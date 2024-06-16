@@ -22,34 +22,41 @@ const Excel = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Excel Data</h1>
-      <button onClick={fetchData}>Refresh</button>
+    <div className="max-w-4xl mx-auto p-4">
+      <h1 className="text-2xl mb-4">Excel Data</h1>
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 focus:outline-none focus:shadow-outline"
+        onClick={fetchData}
+      >
+        Refresh
+      </button>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Form Type</th>
-              <th>Name</th>
-              <th>Country Code</th>
-              <th>Phone Number</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((entry) => (
-              <tr key={entry.id}>
-                <td>{entry.id}</td>
-                <td>{entry.formType}</td>
-                <td>{entry.name}</td>
-                <td>{entry.countryCode}</td>
-                <td>{entry.phoneNumber}</td>
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="border border-gray-300 px-4 py-2">ID</th>
+                <th className="border border-gray-300 px-4 py-2">Form Type</th>
+                <th className="border border-gray-300 px-4 py-2">Name</th>
+                <th className="border border-gray-300 px-4 py-2">Country Code</th>
+                <th className="border border-gray-300 px-4 py-2">Phone Number</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.map((entry) => (
+                <tr key={entry.id} className="border border-gray-300">
+                  <td className="border border-gray-300 px-4 py-2">{entry.id}</td>
+                  <td className="border border-gray-300 px-4 py-2">{entry.formType}</td>
+                  <td className="border border-gray-300 px-4 py-2">{entry.name}</td>
+                  <td className="border border-gray-300 px-4 py-2">{entry.countryCode}</td>
+                  <td className="border border-gray-300 px-4 py-2">{entry.phoneNumber}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
