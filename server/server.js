@@ -52,10 +52,14 @@ db.connect((err) => {
   });
 });
 
+app.get("/api/hello", (req, res) => {
+  res.status(200).send("Hello");
+});
+
 app.post("/api/form", (req, res) => {
   const { formType, name, countryCode, phoneNumber } = req.body;
   const query =
-    "INSERT INTO forms (formType, name, countryCode, phoneNumber) VALUES (?, ?, ?, ?)";
+    "INSERT INTO form_data (formType, name, countryCode, phoneNumber) VALUES (?, ?, ?, ?)";
   db.query(query, [formType, name, countryCode, phoneNumber], (err, result) => {
     if (err) {
       return res.status(500).send(err);
@@ -65,7 +69,7 @@ app.post("/api/form", (req, res) => {
 });
 
 app.get("/api/forms", (req, res) => {
-  const query = "SELECT * FROM forms";
+  const query = "SELECT * FROM form_data";
   db.query(query, (err, data) => {
     if (err) {
       return res.status(500).send(err);
